@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.sancore.sancore_app.Persistence.DTO.UserRegisterDTO;
 import com.sancore.sancore_app.Service.IUserService;
 
@@ -37,6 +36,12 @@ public class UserRegisterController {
 
     @PostMapping
     public String registerUser(@Validated @ModelAttribute("user") UserRegisterDTO registerDTO, BindingResult result) {
+        if (!registerDTO.getEmail().equals(registerDTO.getConfirmEmail())) {
+            result.rejectValue("confirmEmail", "error.user", "Los correos electrónicos no coinciden");
+        }
+        if (!registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
+            result.rejectValue("confirmPassword", "error.user", "Las contraseñas no coinciden");
+        }
         if (result.hasErrors()) {
             return "register-form"; // Si hay errores, vuelve a mostrar el formulario
         }

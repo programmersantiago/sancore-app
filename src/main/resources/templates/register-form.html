@@ -6,66 +6,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrarse</title>
     <link rel="stylesheet" href="/css/register-form.css">
-    <link rel="icon" href="/src/main/resources/static/icon/icon2.png" type="image/x-icon">
+    <link th:href="@{/icon/icon2.png}" rel="icon" type="image/x-icon">
+    <script th:src="@{/js/validation.js}"></script>
 </head>
 
 <body>
-
     <form th:action="@{/register}" th:object="${user}" method="post">
         <h1>Registrarse</h1>
-        <div th:if="${param.exito}">
-            <div class="alert-info">
-                Se ha registrado el usuario con éxito
-            </div>
-        </div>
-        <div>
-            <input type="text" id="firstName" name="firstName" placeholder="Nombre" th:field="*{firstName}" required>
-            <div th:if="${#fields.hasErrors('firstName')}" class="error">
-                <span th:errors="*{firstName}">Nombre es obligatorio</span>
-            </div>
-        </div>
-        <div>
-            <input type="text" id="lastName" name="lastName" placeholder="Apellido" th:field="*{lastName}" required>
-            <div th:if="${#fields.hasErrors('lastName')}" class="error">
-                <span th:errors="*{lastName}">Apellido es obligatorio</span>
-            </div>
-        </div>
-        <div>
 
+        <!-- Mensaje de Éxito -->
+        <div th:if="${param.exito}" class="alert-info">
+            Se ha registrado el usuario con éxito
+        </div>
+
+        <!-- Campos Nombre y Apellido -->
+        <div class="form-row">
+            <div class="form-group half-width">
+                <input type="text" id="firstName" name="firstName" placeholder="Nombre" th:field="*{firstName}" required>
+                <div th:if="${#fields.hasErrors('firstName')}" class="error-tooltip">
+                    <span th:errors="*{firstName}">Nombre es obligatorio</span>
+                </div>
+            </div>
+            <div class="form-group half-width">
+                <input type="text" id="lastName" name="lastName" placeholder="Apellido" th:field="*{lastName}" required>
+                <div th:if="${#fields.hasErrors('lastName')}" class="error-tooltip">
+                    <span th:errors="*{lastName}">Apellido es obligatorio</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo Nombre de Usuario -->
+        <div class="form-group">
             <input type="text" id="nick" name="nick" placeholder="Nombre de usuario" th:field="*{nick}" required>
-
-            <div th:if="${#fields.hasErrors('nick')}" class="error">
-                <span th:errors="*{nick}">El nombre de usuario es obligatorio y debe tener entre 3 y 15
-                    caracteres</span>
+            <div th:if="${#fields.hasErrors('nick')}" class="error-tooltip">
+                <span th:errors="*{nick}">El nombre de usuario es obligatorio y debe tener entre 3 y 15 caracteres</span>
             </div>
         </div>
-        <div>
 
+        <!-- Campo Correo Electrónico -->
+        <div class="form-group">
             <input type="email" id="email" name="email" placeholder="Correo electrónico" th:field="*{email}" required>
-
-            <div th:if="${#fields.hasErrors('email')}" class="error">
+            <div th:if="${#fields.hasErrors('email')}" class="error-tooltip">
                 <span th:errors="*{email}">Correo electrónico es obligatorio y debe ser válido</span>
             </div>
         </div>
 
-        <div>
+        <!-- Campo Confirmar Correo -->
+        <div class="form-group">
+            <input type="email" name="confirmEmail" placeholder="Confirmar correo electrónico" th:field="*{confirmEmail}" required>
+            <div th:if="${#fields.hasErrors('confirmEmail')}" class="error-tooltip">
+                <span th:errors="*{confirmEmail}">El correo electrónico no coincide con el primero</span>
+            </div>
+        </div>
 
-            <input type="password" id="password" name="password" placeholder="Contraseña" th:field="*{password}"
-                required>
-
-            <div th:if="${#fields.hasErrors('password')}" class="error">
+        <!-- Campo Contraseña -->
+        <div class="form-group">
+            <input type="password" id="password" name="password" placeholder="Contraseña" th:field="*{password}" required>
+            <div th:if="${#fields.hasErrors('password')}" class="error-tooltip">
                 <span th:errors="*{password}">La contraseña es obligatoria y debe tener al menos 6 caracteres</span>
             </div>
         </div>
-        <div>
+
+        <!-- Campo Confirmar Contraseña -->
+        <div class="form-group">
+            <input type="password" name="confirmPassword" placeholder="Confirmar contraseña" th:field="*{confirmPassword}" required>
+            <div th:if="${#fields.hasErrors('confirmPassword')}" class="error-tooltip">
+                <span th:errors="*{confirmPassword}">La contraseña no coincide con la primera</span>
+            </div>
+        </div>
+
+        <!-- Botón Registrarse -->
+        <div class="form-group">
             <button type="submit">Registrarse</button>
         </div>
-    </form>
-    <div>
-        <p>Ya tienes una cuenta? <a th:href="@{/register/login}">Iniciar Sesión aquí</a></p>
-    </div>
 
-    <script src="/js/validation.js"></script>
+        <!-- Enlace Iniciar Sesión -->
+        <div class="link-container">
+            <p>¿Ya tienes una cuenta? <a th:href="@{/register/login}">Inicia Sesión aquí</a></p>
+        </div>
+    </form>
 </body>
 
 </html>
