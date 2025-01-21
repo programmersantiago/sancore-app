@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse</title>
+    <link rel="stylesheet" href="/css/register-form.css">
+    <link rel="icon" href="/src/main/resources/static/icon/icon2.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <form th:action="@{/register}" th:object="${user}" method="post">
+        <h1>Registrarse</h1>
+        <div th:if="${param.exito}">
+            <div class="alert-info">
+                Se ha registrado el usuario con éxito
+            </div>
+        </div>
+        <div>
+            <input type="text" id="firstName" name="firstName" placeholder="Nombre" th:field="*{firstName}" required>
+            <div th:if="${#fields.hasErrors('firstName')}" class="error">
+                <span th:errors="*{firstName}">Nombre es obligatorio</span>
+            </div>
+        </div>
+        <div>
+            <input type="text" id="lastName" name="lastName" placeholder="Apellido" th:field="*{lastName}" required>
+            <div th:if="${#fields.hasErrors('lastName')}" class="error">
+                <span th:errors="*{lastName}">Apellido es obligatorio</span>
+            </div>
+        </div>
+        <div>
+
+            <input type="text" id="nick" name="nick" placeholder="Nombre de usuario" th:field="*{nick}" required>
+
+            <div th:if="${#fields.hasErrors('nick')}" class="error">
+                <span th:errors="*{nick}">El nombre de usuario es obligatorio y debe tener entre 3 y 15
+                    caracteres</span>
+            </div>
+        </div>
+        <div>
+
+            <input type="email" id="email" name="email" placeholder="Correo electrónico" th:field="*{email}" required>
+
+            <div th:if="${#fields.hasErrors('email')}" class="error">
+                <span th:errors="*{email}">Correo electrónico es obligatorio y debe ser válido</span>
+            </div>
+        </div>
+
+        <div>
+
+            <input type="password" id="password" name="password" placeholder="Contraseña" th:field="*{password}"
+                required>
+
+            <div th:if="${#fields.hasErrors('password')}" class="error">
+                <span th:errors="*{password}">La contraseña es obligatoria y debe tener al menos 6 caracteres</span>
+            </div>
+        </div>
+        <div>
+            <button type="submit">Registrarse</button>
+        </div>
+    </form>
+    <div>
+        <p>Ya tienes una cuenta? <a th:href="@{/register/login}">Iniciar Sesión aquí</a></p>
+    </div>
+
+    <script src="/js/validation.js"></script>
+</body>
+
+</html>

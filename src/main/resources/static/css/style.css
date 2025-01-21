@@ -1,0 +1,145 @@
+/* Reseteo de márgenes y padding por defecto */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo básico para el body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* Estilo del título */
+h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Estilo para el formulario */
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Contenedor de las etiquetas e inputs */
+div {
+    margin-bottom: 15px;
+}
+
+/* Estilo para las etiquetas */
+label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Estilo para los campos de entrada */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Estilo para el botón */
+button {
+    background-color: #007BFF;
+    color: white;
+    font-size: 1.1rem;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para los mensajes de error */
+div p {
+    color: red;
+    font-size: 1rem;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Estilo para los enlaces */
+a {
+    color: #007BFF;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    /* Color de fondo rojo claro */
+    color: #721c24;
+    /* Color del texto rojo oscuro */
+    border: 1px solid #f5c6cb;
+    /* Borde */
+    padding: 10px 20px;
+    /* Espaciado interno */
+    margin: 15px 0;
+    /* Espaciado externo */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    font-family: Arial, sans-serif;
+    /* Fuente */
+    font-size: 14px;
+    /* Tamaño de fuente */
+    text-align: center;
+    /* Centrar el texto */
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    /* Color de fondo azul claro */
+    color: #0c5460;
+    /* Color del texto */
+    border: 1px solid #bee5eb;
+    /* Borde */
+    padding: 10px 20px;
+    /* Espaciado interno */
+    margin: 15px 0;
+    /* Espaciado externo */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    font-family: Arial, sans-serif;
+    /* Fuente */
+    font-size: 14px;
+    /* Tamaño de fuente */
+    text-align: center;
+    /* Centrar el texto */
+}

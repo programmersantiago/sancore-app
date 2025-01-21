@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a Sancore App</title>
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+
+<body>
+    <h1>Bienvenido a Sancore App!</h1>
+    <p>Has iniciado sesión correctamente.</p>
+    <div>
+        <ul>
+            <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+</body>
+
+</html>

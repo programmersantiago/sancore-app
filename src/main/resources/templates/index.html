@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+
+<body>
+    <h1>Iniciar Sesión</h1>
+    <form action="#" th:action="@{/login}" method="post">
+        <div th:if="${param.error}">
+            <div class="alert-danger">
+                Usuario o contraseña incorrectos
+            </div>
+        </div>
+        <div th:if="${param.logout}">
+            <div class="alert-info">
+                Ha cerrado sesión exitosamente
+            </div>
+        </div>
+        <div>
+            <label for="username">Correo eléctronico / Usuario:
+                <input type="text" id="username" name="username" placeholder="Escriba un usuario" required>
+            </label>
+        </div>
+        <div>
+            <label for="password">Contraseña:
+                <input type="password" id="password" name="password" placeholder="Escriba una contraseña" required>
+            </label>
+        </div>
+        <div>
+            <button type="submit">Iniciar Sesión</button>
+        </div>
+    </form>
+    <div>
+        <p>
+            <a th:href="@{/register}">No tienes cuenta? Registrate aquí</a>
+        </p>
+    </div>
+    <div>
+        <p>
+            <a th:href="@{/register/recoverPassword}">Olvidaste tu contraseña?</a>
+        </p>
+    </div>
+</body>
+
+</html>
