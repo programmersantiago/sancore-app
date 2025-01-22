@@ -6,10 +6,16 @@ import org.springframework.stereotype.Repository;
 import com.sancore.sancore_app.Persistence.Entities.UserEntity;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, Long>{
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     Optional<UserEntity> findByEmail(String email);
+
     Optional<UserEntity> findByNick(String nick);
+
     Optional<UserEntity> findByNickOrEmail(String nick, String email);
+
+    boolean existsByEmail(String email);
+
+    boolean existsByNick(String nick);
 
 }

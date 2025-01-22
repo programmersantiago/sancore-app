@@ -35,19 +35,40 @@ public class UserRegisterController {
     }
 
     @PostMapping
-    public String registerUser(@Validated @ModelAttribute("user") UserRegisterDTO registerDTO, BindingResult result) {
+    public String registerUser(@Validated @ModelAttribute("user") UserRegisterDTO registerDTO, BindingResult result,
+            Model model, RedirectAttributes redirectAttributes) {
+        // Validación de coincidencia de email y confirmación
         if (!registerDTO.getEmail().equals(registerDTO.getConfirmEmail())) {
             result.rejectValue("confirmEmail", "error.user", "Los correos electrónicos no coinciden");
         }
+
+        // Validación de coincidencia de contraseña y confirmación
         if (!registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
             result.rejectValue("confirmPassword", "error.user", "Las contraseñas no coinciden");
         }
+
+        // Si hay errores de validación, vuelve al formulario
         if (result.hasErrors()) {
-            return "register-form"; // Si hay errores, vuelve a mostrar el formulario
+            model.addAttribute("status", "error");
+            model.addAttribute("message", "Revisa los campos del formulario.");
+            return "register-form";
         }
 
-        userService.saveUser(registerDTO);
-        return "redirect:/login?exito"; // Redirige a login después del registro
+        // Intentar registrar al usuario
+        try {
+            userService.saveUser(registerDTO);
+
+            // Redirigir al login con el mensaje de éxito
+            redirectAttributes.addFlashAttribute("message", "Usuario registrado con éxito.");
+            redirectAttributes.addFlashAttribute("status", "success");
+
+            return "redirect:/login"; // Redirige a la página de login
+        } catch (Exception e) {
+            // Si ocurre un error al guardar el usuario
+            model.addAttribute("status", "error");
+            model.addAttribute("message", "Error al guardar el usuario: " + e.getMessage());
+            return "register-form";
+        }
     }
 
     @GetMapping("/register-form")

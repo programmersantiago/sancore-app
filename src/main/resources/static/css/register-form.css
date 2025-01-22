@@ -1,11 +1,11 @@
-/* Reseteo de márgenes y padding */
+/* Reseteo de márgenes y paddings */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Fondo general */
+/* Fondo general con gradiente */
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background: linear-gradient(135deg, #6C3483, #58D68D);
@@ -59,6 +59,7 @@ input[type="email"]:focus,
 input[type="password"]:focus {
     border-color: #6C3483;
     outline: none;
+    box-shadow: 0 0 5px rgba(108, 52, 131, 0.6);
 }
 
 /* Botón */
@@ -96,28 +97,17 @@ p a:hover {
 
 /* Ventanitas flotantes de error */
 .error-tooltip {
-    background-color: #f44336;
-    /* Color de fondo */
+    background-color: #6C3483;
     color: white;
-    /* Texto en blanco */
     padding: 10px;
-    /* Espaciado interno más grande para mayor legibilidad */
     border-radius: 5px;
     font-size: 12px;
     line-height: 1.5;
-    /* Ajusta la altura de línea para evitar que el texto se amontone */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    word-wrap: break-word;
-    /* Permite que las palabras largas se ajusten */
-    white-space: normal;
-    /* Permite que el texto haga saltos de línea si es necesario */
     margin-top: 5px;
-    /* Espacio entre el campo y el mensaje */
+    position: relative;
     display: block;
     z-index: 1000;
-    /* Asegura que el mensaje esté sobre otros elementos */
-    max-width: 300px;
-    /* Define un ancho máximo para evitar que el cuadro sea demasiado ancho */
 }
 
 /* Triángulo decorativo */
@@ -125,12 +115,8 @@ p a:hover {
     content: '';
     position: absolute;
     top: -5px;
-    left: 10px;
+    left: 15px;
     border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent #f44336 transparent;
-    /* Lo movemos hacia arriba para que no se desplace demasiado */
-    transform: translateY(-50%);
 }
 
 /* Contenedor del enlace */
@@ -150,7 +136,7 @@ p a:hover {
     text-decoration: underline;
 }
 
-/* Estilo para agrupar en filas */
+/* Agrupación en filas */
 .form-row {
     display: flex;
     gap: 10px;
@@ -162,7 +148,47 @@ p a:hover {
     width: 48%;
 }
 
-/* Campos generales */
+/* Estilo general para grupos */
 .form-group {
     margin-bottom: 15px;
+}
+
+/* Mensajes de alerta */
+.alert {
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    position: absolute;
+    /* Posicionamiento para que esté flotante */
+    top: 10%;
+    /* A cierta distancia de la parte superior */
+    left: 50%;
+    /* Centrado horizontalmente */
+    transform: translate(-50%, 0);
+    /* Ajuste para el centro exacto */
+    z-index: 1000;
+    /* Sobre otros elementos */
+    width: 80%;
+    /* Opcional: límite de ancho */
+    max-width: 400px;
+    /* Máximo ancho */
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    background-color: #6C3483;
+    color: white;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
 }

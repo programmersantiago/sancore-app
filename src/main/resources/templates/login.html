@@ -6,15 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="/css/login.css">
-    <link rel="icon" href="/src/main/resources/static/icon/icon1.png" type="image/x-icon">
+    <link th:href="@{/icon/icon2.png}" rel="icon" type="image/x-icon">
 </head>
 
 <body>
     <div th:if="${param.error}" class="error-modal">
         <div class="error-content">
-            <p>Credenciales incorrectas. Intenta de nuevo.</p>
+            <p>La dirección de correo electrónico o la contraseña faltan o son inválidos. Corríjalo e inténtelo de nuevo.</p>
             <button onclick="closeErrorModal()">Cerrar</button>
         </div>
+    </div>
+    <div th:if="${message}" th:class="'alert ' + (${status} ?: 'info')" class="alert">
+        <span th:text="${message}"></span>
     </div>
 
     <div class="formulario">
@@ -23,7 +26,8 @@
         <form th:action="@{/login}" method="post" onsubmit="return validateForm()" novalidate>
 
             <div class="username">
-                <input type="text" id="username" name="username" placeholder="Correo electrónico o nombre de usuario" required>
+                <input type="text" id="username" name="username" placeholder="Correo electrónico o nombre de usuario"
+                    required>
             </div>
             <div class="username">
                 <input type="password" id="password" name="password" placeholder="Contraseña" required>
@@ -56,6 +60,20 @@
             return true; // Permite que el formulario se envíe
         }
 
+        // Mostrar el mensaje de éxito durante 5 segundos si existe
+        document.addEventListener("DOMContentLoaded", function () {
+            const messageContainer = document.querySelector('.alert');
+
+            if (messageContainer) {
+                messageContainer.style.display = "block"; // Mostrar el mensaje
+
+                // Ocultar el mensaje después de 5 segundos
+                setTimeout(() => {
+                    messageContainer.style.display = "none";
+                }, 4000);
+            }
+        });
+
         // Función para cerrar la ventana modal de error
         function closeErrorModal() {
             let errorModal = document.querySelector('.error-modal');
@@ -64,6 +82,7 @@
             }
         }
     </script>
+
 </body>
 
 </html>

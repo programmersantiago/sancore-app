@@ -38,7 +38,16 @@ public class UserServiceImpl implements IUserService {
     private UserRepository userRepository;
 
     @Override
-    public UserEntity saveUser(UserRegisterDTO registerDTO) {
+    public UserEntity saveUser(UserRegisterDTO registerDTO) throws Exception {
+        // Verificar si el correo ya está registrado
+        if (userRepository.existsByEmail(registerDTO.getEmail())) {
+            throw new Exception("El correo ya está registrado.");
+        }
+
+        // Verificar si el nick ya está registrado
+        if (userRepository.existsByNick(registerDTO.getNick())) {
+            throw new Exception("El nombre de usuario ya está registrado.");
+        }
 
         // Crear la entidad de usuario
         UserEntity user = new UserEntity(
@@ -49,8 +58,13 @@ public class UserServiceImpl implements IUserService {
                 passwordEncoder.encode(registerDTO.getPassword()),
                 Arrays.asList(new Role("ROLE_USER")));
 
-        // Guardar el usuario en el repositorio
-        return userRepository.save(user);
+        // Intentar guardar el usuario
+        try {
+            return userRepository.save(user);
+        } catch (Exception e) {
+            // Si ocurre un error al guardar, lanzar la excepción
+            throw new Exception("Error al guardar el usuario: " + e.getMessage(), e);
+        }
     }
 
     @Override

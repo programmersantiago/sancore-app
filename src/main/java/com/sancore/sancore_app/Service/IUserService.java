@@ -9,7 +9,7 @@ import com.sancore.sancore_app.Persistence.Entities.UserEntity;
 
 public interface IUserService extends UserDetailsService {
 
-    public UserEntity saveUser(UserRegisterDTO registerDTO);
+    public UserEntity saveUser(UserRegisterDTO registerDTO) throws Exception;
 
     void createPasswordResetTokenForUser(UserEntity user, String token);
 

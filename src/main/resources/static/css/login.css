@@ -1,3 +1,10 @@
+/* Reseteo de márgenes y paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -11,7 +18,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
+    width: 420px;
     background: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -31,46 +38,25 @@ body {
 }
 
 form .username {
-    position: relative;
-    border-bottom: 2px solid #adadad;
     margin: 30px 0;
 }
 
 .username input {
     width: 100%;
-    padding: 0 5px;
+    padding: 20px 5px;
     height: 40px;
     font-size: 16px;
-    border: none;
     background: none;
     outline: none;
-    transition: border-color 0.3s ease;
+    border: 2px solid #adadad;
+    border-radius: 4px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.username label {
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    color: #adadad;
-    transform: translate(-50%);
-    font-size: 16px;
-    pointer-events: none;
-}
-
-.username span::before {
-    content: '';
-    position: absolute;
-    top: 40px;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background: #6C3483;
-    transition: .5s;
-}
-
-.username input:focus~label {
-    top: -5px;
-    color: #6C3483;
+.username input:focus {
+    border-color: #6C3483;
+    /* Sombra morada */
+    box-shadow: 0 0 5px rgba(108, 52, 131, 0.6);
 }
 
 .username input:focus~span::before {
@@ -94,8 +80,8 @@ form .username {
 
 /* Estilo para el contenido del mensaje de error */
 .error-content {
-    background-color: #f8d7da;
-    color: #721c24;
+    background-color: #58D68D;
+    color: #4d1264;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
@@ -107,7 +93,7 @@ form .username {
 .error-content button {
     margin-top: 15px;
     padding: 10px 20px;
-    background-color: #721c24;
+    background-color: #6C3483;
     color: white;
     border: none;
     border-radius: 5px;
@@ -116,7 +102,7 @@ form .username {
 
 /* Hover efecto para el botón de cerrar */
 .error-content button:hover {
-    background-color: #5a1b1f;
+    background-color: #8a45a5;
 }
 
 .error-message {
@@ -139,7 +125,7 @@ form .username {
 }
 
 .recordar a {
-    color: blue;
+    color: #6C3483;
     cursor: pointer;
     text-decoration: none;
 }
@@ -173,10 +159,50 @@ input[type="submit"]:hover {
 }
 
 .registrarse a {
-    color: blue;
+    color: #6C3483;
     text-decoration: none;
 }
 
 .registrarse a:hover {
     text-decoration: underline;
+}
+
+/* Mensajes de alerta */
+.alert {
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    position: absolute;
+    /* Posicionamiento para que esté flotante */
+    top: 5%;
+    /* A cierta distancia de la parte superior */
+    left: 50%;
+    /* Centrado horizontalmente */
+    transform: translate(-50%, 0);
+    /* Ajuste para el centro exacto */
+    z-index: 1000;
+    /* Sobre otros elementos */
+    width: 80%;
+    /* Opcional: límite de ancho */
+    max-width: 400px;
+    /* Máximo ancho */
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    background-color: #6C3483;
+    color: white;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
 }
